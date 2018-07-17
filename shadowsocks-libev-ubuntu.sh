@@ -231,21 +231,21 @@ install(){
     if check_sys packageManager apt; then
         apt update
         apt -y full-upgrade
-		apt -y install shadowsocks-libev
+        apt -y install shadowsocks-libev
     fi
-	config_shadowsocks
+    config_shadowsocks
 }
 
 # Config system
 config_system(){
     sed -i '/net.core.default_qdisc/d' /etc/sysctl.conf
     sed -i '/net.ipv4.tcp_congestion_control/d' /etc/sysctl.conf
-	sed -i '/net.ipv4.tcp_fastopen/d' /etc/sysctl.conf
+    sed -i '/net.ipv4.tcp_fastopen/d' /etc/sysctl.conf
     echo "net.core.default_qdisc = fq" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_congestion_control = bbr" >> /etc/sysctl.conf
-	echo "net.ipv4.tcp_fastopen = 3" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_fastopen = 3" >> /etc/sysctl.conf
     sysctl -p >/dev/null 2>&1
-	systemctl enable shadowsocks-libev 
+    systemctl enable shadowsocks-libev 
 }
 
 # End Install
@@ -257,8 +257,8 @@ end_install(){
     echo -e "Your Server Port      : \033[41;37m ${shadowsocksport} \033[0m"
     echo -e "Your Password         : \033[41;37m ${shadowsockspwd} \033[0m"
     echo -e "Your Encryption Method: \033[41;37m ${shadowsockscipher} \033[0m"
-	echo
-	echo -e "\033[41;37m DO NOT FORGET TO RESTART THE SERVER TO GET THE BEST SPEED. \033[0m"
+    echo
+    echo -e "\033[41;37m DO NOT FORGET TO RESTART THE SERVER TO GET THE BEST SPEED. \033[0m"
     echo
     echo "Enjoy it!"
     echo
@@ -267,10 +267,10 @@ end_install(){
 # Install Shadowsocks
 install_shadowsocks(){
     pre_install
-	install
+    install
     config_shadowsocks
-	config_system
-	end_install
+    config_system
+    end_install
 }
 
 # Initialization step
